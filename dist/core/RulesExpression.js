@@ -1,5 +1,8 @@
-import { StringWriter } from "../utils/StringWriter.js";
-export class RulesExpression {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RulesExpression = void 0;
+const StringWriter_js_1 = require("../utils/StringWriter.js");
+class RulesExpression {
     constructor(...expression) {
         this.expression = expression;
     }
@@ -30,11 +33,12 @@ export class RulesExpression {
         this.writeImpl(writer, this.expression);
     }
     toString() {
-        const writer = new StringWriter();
+        const writer = new StringWriter_js_1.StringWriter();
         this.write(writer);
         return `RulesExpression(${writer.toString()})`;
     }
 }
+exports.RulesExpression = RulesExpression;
 (function (RulesExpression) {
     function l(strings, ...expr) {
         return new class extends RulesExpression {
@@ -70,5 +74,5 @@ export class RulesExpression {
         };
     }
     RulesExpression.identDown = identDown;
-})(RulesExpression || (RulesExpression = {}));
+})(RulesExpression || (exports.RulesExpression = RulesExpression = {}));
 //# sourceMappingURL=RulesExpression.js.map

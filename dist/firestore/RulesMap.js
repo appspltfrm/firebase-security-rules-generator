@@ -1,14 +1,17 @@
-import { RulesExpression } from "../core/RulesExpression.js";
-import { RulesBoolean } from "./RulesBoolean.js";
-import { RulesList } from "./RulesList.js";
-import { RulesMapDiff } from "./RulesMapDiff.js";
-import { RulesValue } from "./RulesValue.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RulesMap = void 0;
+const RulesExpression_js_1 = require("../core/RulesExpression.js");
+const RulesBoolean_js_1 = require("./RulesBoolean.js");
+const RulesList_js_1 = require("./RulesList.js");
+const RulesMapDiff_js_1 = require("./RulesMapDiff.js");
+const RulesValue_js_1 = require("./RulesValue.js");
 /**
  * Map type, used for simple key-value mappings.
  *
  * {@link https://firebase.google.com/docs/reference/rules/rules.Map}
  */
-export class RulesMap extends RulesValue {
+class RulesMap extends RulesValue_js_1.RulesValue {
     /**
      * Returns the value associated with a given search key string.
      *
@@ -24,18 +27,19 @@ export class RulesMap extends RulesValue {
      * @param defaultValue Value to return if the map does not contain the given search key.
      */
     get(key, valueType, defaultValue) {
-        const type = new (valueType || RulesValue);
-        type.__rulesExpression = new RulesExpression(RulesExpression.l `(`, this, RulesExpression.l `)`, RulesExpression.l `.get(`, key, RulesExpression.l `, `, (defaultValue !== undefined ? defaultValue : RulesExpression.l `null`), RulesExpression.l `)`);
+        const type = new (valueType || RulesValue_js_1.RulesValue);
+        type.__rulesExpression = new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `(`, this, RulesExpression_js_1.RulesExpression.l `)`, RulesExpression_js_1.RulesExpression.l `.get(`, key, RulesExpression_js_1.RulesExpression.l `, `, (defaultValue !== undefined ? defaultValue : RulesExpression_js_1.RulesExpression.l `null`), RulesExpression_js_1.RulesExpression.l `)`);
         return type;
     }
     diff(map) {
-        return new RulesMapDiff(new RulesExpression(this, RulesExpression.l `.diff(`, map, RulesExpression.l `)`));
+        return new RulesMapDiff_js_1.RulesMapDiff(new RulesExpression_js_1.RulesExpression(this, RulesExpression_js_1.RulesExpression.l `.diff(`, map, RulesExpression_js_1.RulesExpression.l `)`));
     }
     keys() {
-        return new RulesList(new RulesExpression(this, RulesExpression.l `.keys()`));
+        return new RulesList_js_1.RulesList(new RulesExpression_js_1.RulesExpression(this, RulesExpression_js_1.RulesExpression.l `.keys()`));
     }
     hasKey(key) {
-        return new RulesBoolean(new RulesExpression(RulesExpression.l `(`, key, RulesExpression.l ` in `, this, RulesExpression.l `)`));
+        return new RulesBoolean_js_1.RulesBoolean(new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `(`, key, RulesExpression_js_1.RulesExpression.l ` in `, this, RulesExpression_js_1.RulesExpression.l `)`));
     }
 }
+exports.RulesMap = RulesMap;
 //# sourceMappingURL=RulesMap.js.map

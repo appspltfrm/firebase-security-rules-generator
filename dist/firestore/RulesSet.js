@@ -1,25 +1,28 @@
-import { RulesExpression } from "../core/RulesExpression.js";
-import { RulesBoolean } from "./RulesBoolean.js";
-import { RulesInteger } from "./RulesInteger.js";
-import { RulesValue } from "./RulesValue.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RulesSet = void 0;
+const RulesExpression_js_1 = require("../core/RulesExpression.js");
+const RulesBoolean_js_1 = require("./RulesBoolean.js");
+const RulesInteger_js_1 = require("./RulesInteger.js");
+const RulesValue_js_1 = require("./RulesValue.js");
 /**
  * List type. Items are not necessarily homogenous.
  *
  * {@link https://firebase.google.com/docs/reference/rules/rules.Set}
  */
-export class RulesSet extends RulesValue {
+class RulesSet extends RulesValue_js_1.RulesValue {
     valueType;
     constructor(expression, valueType) {
         super(expression);
         this.valueType = valueType;
     }
     get(index, valueType) {
-        const type = new (valueType || this.valueType || RulesValue);
-        type.__rulesExpression = new RulesExpression(RulesExpression.l `(`, this, RulesExpression.l `)`, RulesExpression.l `[`, index, RulesExpression.l `]`);
+        const type = new (valueType || this.valueType || RulesValue_js_1.RulesValue);
+        type.__rulesExpression = new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `(`, this, RulesExpression_js_1.RulesExpression.l `)`, RulesExpression_js_1.RulesExpression.l `[`, index, RulesExpression_js_1.RulesExpression.l `]`);
         return type;
     }
     size() {
-        return new RulesInteger(new RulesExpression(this, RulesExpression.l `.size()`));
+        return new RulesInteger_js_1.RulesInteger(new RulesExpression_js_1.RulesExpression(this, RulesExpression_js_1.RulesExpression.l `.size()`));
     }
     hasAll(collection) {
         return this.buildHasExpression("hasAll", collection);
@@ -31,22 +34,23 @@ export class RulesSet extends RulesValue {
         return this.buildHasExpression("hasOnly", list);
     }
     buildHasExpression(method, list) {
-        const expression = [this, RulesExpression.l `.${method}(`];
+        const expression = [this, RulesExpression_js_1.RulesExpression.l `.${method}(`];
         if (list instanceof Array) {
-            expression.push(RulesExpression.l `[`);
+            expression.push(RulesExpression_js_1.RulesExpression.l `[`);
             for (let i = 0; i < list.length; i++) {
                 if (i > 0) {
-                    expression.push(RulesExpression.l `, `);
+                    expression.push(RulesExpression_js_1.RulesExpression.l `, `);
                 }
                 expression.push(list[i]);
             }
-            expression.push(RulesExpression.l `]`);
+            expression.push(RulesExpression_js_1.RulesExpression.l `]`);
         }
         else {
             expression.push(list);
         }
-        expression.push(RulesExpression.l `)`);
-        return new RulesBoolean(new RulesExpression(expression));
+        expression.push(RulesExpression_js_1.RulesExpression.l `)`);
+        return new RulesBoolean_js_1.RulesBoolean(new RulesExpression_js_1.RulesExpression(expression));
     }
 }
+exports.RulesSet = RulesSet;
 //# sourceMappingURL=RulesSet.js.map

@@ -1,17 +1,22 @@
-import { RulesExpression } from "../core/RulesExpression.js";
-import { RulesValue } from "./RulesValue.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RulesPath = void 0;
+exports.path = path;
+const RulesExpression_js_1 = require("../core/RulesExpression.js");
+const RulesValue_js_1 = require("./RulesValue.js");
 /**
  * Directory-like pattern for the location of a resource.
  *
  * {@link https://firebase.google.com/docs/reference/rules/rules.Path}
  */
-export class RulesPath extends RulesValue {
+class RulesPath extends RulesValue_js_1.RulesValue {
     bind(map) {
-        return new RulesPath(new RulesExpression(RulesExpression.l `(`, this, RulesExpression.l `).bind(`, map, RulesExpression.l `)`));
+        return new RulesPath(new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `(`, this, RulesExpression_js_1.RulesExpression.l `).bind(`, map, RulesExpression_js_1.RulesExpression.l `)`));
     }
 }
-export function path(path) {
-    return new RulesPath(new RulesExpression(RulesExpression.l `path(`, path, RulesExpression.l `)`));
+exports.RulesPath = RulesPath;
+function path(path) {
+    return new RulesPath(new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `path(`, path, RulesExpression_js_1.RulesExpression.l `)`));
 }
 (function (RulesPath) {
     function value(stringPath) {
@@ -19,7 +24,7 @@ export function path(path) {
     }
     RulesPath.value = value;
     function l(strings, ...expr) {
-        return new RulesPath(new class extends RulesExpression {
+        return new RulesPath(new class extends RulesExpression_js_1.RulesExpression {
             write(writer) {
                 writer.write("/databases/$(database)/documents");
                 let braceOpened = false;
@@ -34,9 +39,9 @@ export function path(path) {
                             writer.write("$(\"");
                             braceOpened = true;
                         }
-                        if (expr[i] instanceof RulesValue || expr[i] instanceof RulesExpression) {
+                        if (expr[i] instanceof RulesValue_js_1.RulesValue || expr[i] instanceof RulesExpression_js_1.RulesExpression) {
                             writer.write(`" + `);
-                            (expr[i] instanceof RulesValue ? expr[i].__rulesValueAsExpression() : expr[i]).write(writer);
+                            (expr[i] instanceof RulesValue_js_1.RulesValue ? expr[i].__rulesValueAsExpression() : expr[i]).write(writer);
                             writer.write(` + "`);
                         }
                         else {
@@ -51,5 +56,5 @@ export function path(path) {
         });
     }
     RulesPath.l = l;
-})(RulesPath || (RulesPath = {}));
+})(RulesPath || (exports.RulesPath = RulesPath = {}));
 //# sourceMappingURL=RulesPath.js.map

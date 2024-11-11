@@ -1,9 +1,13 @@
-export function allow(...operation) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.allow = allow;
+exports.deny = deny;
+function allow(...operation) {
     return function (targetClass, propertyKey, descriptor) {
         allowImpl(targetClass, propertyKey, descriptor, operation, false);
     };
 }
-export function deny(...operation) {
+function deny(...operation) {
     return function (targetClass, propertyKey, descriptor) {
         allowImpl(targetClass, propertyKey, descriptor, operation, true);
     };

@@ -1,10 +1,13 @@
-import { request } from "./request.js";
-export function requestData(resourceData) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.requestData = requestData;
+const request_js_1 = require("./request.js");
+function requestData(resourceData) {
     if (resourceData) {
-        return request(resourceData).resource.data();
+        return (0, request_js_1.request)(resourceData).resource.data();
     }
     else {
-        return request().resource.data();
+        return (0, request_js_1.request)().resource.data();
     }
 }
 //# sourceMappingURL=requestData.js.map

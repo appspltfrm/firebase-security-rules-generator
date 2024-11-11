@@ -1,13 +1,16 @@
-import { RulesRequestImpl } from "./RulesRequest.js";
-import { RulesResourceKnownData, RulesResourceUnknownData } from "./RulesResource.js";
-export function request(resourceData) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.request = request;
+const RulesRequest_js_1 = require("./RulesRequest.js");
+const RulesResource_js_1 = require("./RulesResource.js");
+function request(resourceData) {
     let resource;
     if (resourceData) {
-        resource = new RulesResourceKnownData(resourceData);
+        resource = new RulesResource_js_1.RulesResourceKnownData(resourceData);
     }
     else {
-        resource = new RulesResourceUnknownData();
+        resource = new RulesResource_js_1.RulesResourceUnknownData();
     }
-    return new RulesRequestImpl(resource);
+    return new RulesRequest_js_1.RulesRequestImpl(resource);
 }
 //# sourceMappingURL=request.js.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"addedOrChangedKeysMapDiffNative.js","sourceRoot":"","sources":["../../src/firestore/addedOrChangedKeysMapDiffNative.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,eAAe,EAAC,MAAM,4BAA4B,CAAC;AAE3D,MAAM,CAAC,MAAM,+BAA+B,GAAG,eAAe,CAAC,CAAC,CAAA;;EAE9D,CAAC"}
+{"version":3,"file":"addedOrChangedKeysMapDiffNative.js","sourceRoot":"","sources":["../../src/firestore/addedOrChangedKeysMapDiffNative.ts"],"names":[],"mappings":";;;AAAA,mEAA2D;AAE9C,QAAA,+BAA+B,GAAG,oCAAe,CAAC,CAAC,CAAA;;EAE9D,CAAC"}

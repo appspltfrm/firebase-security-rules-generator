@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.match = match;
-const RulesValue_js_1 = require("./RulesValue.js");
-function match(path) {
+import { RulesValue } from "./RulesValue.js";
+export function match(path) {
     return function (classConstructor) {
         const internalConstructor = classConstructor;
         internalConstructor.__rulesMatchPath = path;
@@ -21,7 +18,7 @@ function match(path) {
                             thiz[propertyName].__rulesAccessorName = propertyName;
                         }
                     }
-                    else if (propertyValue instanceof RulesValue_js_1.RulesValue) {
+                    else if (propertyValue instanceof RulesValue) {
                         propertyValue.__rulesAccessorName = propertyName;
                         propertyValue.__rulesAccessorContext = "resource.data";
                     }

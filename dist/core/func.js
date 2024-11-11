@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.func = func;
-require("reflect-metadata");
-const RulesExpression_js_1 = require("./RulesExpression.js");
-const RulesValue_js_1 = require("./RulesValue.js");
+import "reflect-metadata";
+import { RulesExpression } from "./RulesExpression.js";
+import { RulesValue } from "./RulesValue.js";
 /**
  * A function within match block.
  */
-function func(options) {
+export function func(options) {
     return function (targetClass, functionName, descriptor) {
         const classConstructor = targetClass.prototype ? targetClass : targetClass.constructor;
         const originalFunction = descriptor.value;
@@ -22,16 +19,16 @@ function func(options) {
             const expression = [];
             for (let i = 0; i < arguments.length; i++) {
                 if (i > 0) {
-                    expression.push(RulesExpression_js_1.RulesExpression.l `, `);
+                    expression.push(RulesExpression.l `, `);
                 }
-                if (arguments[i] instanceof RulesValue_js_1.RulesValue) {
+                if (arguments[i] instanceof RulesValue) {
                     expression.push(arguments[i].__rulesValueAsExpression());
                 }
-                else if (arguments[i] instanceof RulesExpression_js_1.RulesExpression) {
+                else if (arguments[i] instanceof RulesExpression) {
                     expression.push(arguments[i]);
                 }
                 else if (arguments[i] === null || arguments[i] === undefined) {
-                    expression.push(RulesExpression_js_1.RulesExpression.l `null`);
+                    expression.push(RulesExpression.l `null`);
                 }
                 else {
                     expression.push(arguments[i]);
@@ -43,8 +40,8 @@ function func(options) {
             const original = originalFunction.apply(this, arguments);
             varsStack.splice(varsStack.length - 1);
             this.__rulesFunctionVars = varsStack.length > 0 ? varsStack[varsStack.length - 1] : undefined;
-            const newExpression = new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `${exportedName}(`, expression, RulesExpression_js_1.RulesExpression.l `)`);
-            if (original instanceof RulesValue_js_1.RulesValue) {
+            const newExpression = new RulesExpression(RulesExpression.l `${exportedName}(`, expression, RulesExpression.l `)`);
+            if (original instanceof RulesValue) {
                 const cloned = original.__rulesClone();
                 cloned.__rulesExpression = newExpression;
                 return cloned;
@@ -62,13 +59,13 @@ function func(options) {
         function body() {
             const args = [];
             for (let i = 0; i < arguments.length; i++) {
-                if (arguments[i] instanceof RulesValue_js_1.RulesValue) {
+                if (arguments[i] instanceof RulesValue) {
                     const clone = arguments[i].__rulesClone();
                     clone.__rulesAccessorName = argsNames[i];
                     args.push(clone);
                 }
                 else {
-                    args.push(RulesExpression_js_1.RulesExpression.l `${argsNames[i]}`);
+                    args.push(RulesExpression.l `${argsNames[i]}`);
                 }
             }
             const varsStack = this.__rulesFunctionsVars = this.__rulesFunctionsVars || [];

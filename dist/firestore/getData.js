@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getData = getData;
-const RulesExpression_js_1 = require("../core/RulesExpression.js");
-const get_js_1 = require("./get.js");
+import { RulesExpression } from "../core/RulesExpression.js";
+import { get } from "./get.js";
 /**
  * Get data of resource denoted by given path. Inside it's using {@link get} to access a resource.
  *
@@ -12,9 +9,9 @@ const get_js_1 = require("./get.js");
  *
  * @see https://firebase.google.com/docs/reference/rules/rules.firestore#.get
  */
-function getData(path, dataType) {
+export function getData(path, dataType) {
     const data = new dataType();
-    data.__rulesExpression = new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `__getResourceData(`, (0, get_js_1.get)(path), RulesExpression_js_1.RulesExpression.l `)`);
+    data.__rulesExpression = new RulesExpression(RulesExpression.l `__getResourceData(`, get(path), RulesExpression.l `)`);
     data.__rulesInitProperties();
     return data;
 }

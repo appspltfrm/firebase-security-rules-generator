@@ -2,6 +2,7 @@
   "name": "@appspltfrm/firebase-security-rules-generator",
   "version": "1.0.0",
   "private": false,
+  "type": "module",
   "scripts": {
     "prepare": "ts-patch install -s",
     "install": "node-utils-npm-install-dist",

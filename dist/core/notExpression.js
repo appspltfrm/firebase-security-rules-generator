@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.notExpression = notExpression;
-const RulesExpression_js_1 = require("./RulesExpression.js");
-function notExpression(value) {
-    return new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `!(`, value, RulesExpression_js_1.RulesExpression.l `)`);
+import { RulesExpression } from "./RulesExpression.js";
+export function notExpression(value) {
+    return new RulesExpression(RulesExpression.l `!(`, value, RulesExpression.l `)`);
 }
 //# sourceMappingURL=notExpression.js.map

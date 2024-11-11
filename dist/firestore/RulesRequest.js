@@ -1,22 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RulesRequestImpl = void 0;
-const RulesExpression_js_1 = require("../core/RulesExpression.js");
-const RulesRequestAuth_js_1 = require("./RulesRequestAuth.js");
-const RulesString_js_1 = require("./RulesString.js");
-const RulesTimestamp_js_1 = require("./RulesTimestamp.js");
-const RulesValue_js_1 = require("./RulesValue.js");
-class RulesRequestImpl extends RulesValue_js_1.RulesValue {
+import { RulesExpression } from "../core/RulesExpression.js";
+import { RulesRequestAuth } from "./RulesRequestAuth.js";
+import { RulesString } from "./RulesString.js";
+import { RulesTimestamp } from "./RulesTimestamp.js";
+import { RulesValue } from "./RulesValue.js";
+export class RulesRequestImpl extends RulesValue {
     resource;
     constructor(resource) {
         super();
         this.resource = resource;
         this.__rulesInitProperties();
-        this.__rulesExpression = RulesExpression_js_1.RulesExpression.l `request`;
+        this.__rulesExpression = RulesExpression.l `request`;
     }
     // @ts-ignore
-    auth = new RulesRequestAuth_js_1.RulesRequestAuth;
-    time = new RulesTimestamp_js_1.RulesTimestamp;
+    auth = new RulesRequestAuth;
+    time = new RulesTimestamp;
     /**
      * The request method. One of:
      * - get
@@ -27,7 +24,6 @@ class RulesRequestImpl extends RulesValue_js_1.RulesValue {
      *
      * @see https://firebase.google.com/docs/reference/rules/rules.firestore.Request#method
      */
-    method = new RulesString_js_1.RulesString;
+    method = new RulesString;
 }
-exports.RulesRequestImpl = RulesRequestImpl;
 //# sourceMappingURL=RulesRequest.js.map

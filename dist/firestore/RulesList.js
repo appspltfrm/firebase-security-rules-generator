@@ -1,19 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RulesList = void 0;
-const RulesExpression_js_1 = require("../core/RulesExpression.js");
-const RulesBoolean_js_1 = require("./RulesBoolean.js");
-const RulesInteger_js_1 = require("./RulesInteger.js");
-const RulesValue_js_1 = require("./RulesValue.js");
+import { RulesExpression } from "../core/RulesExpression.js";
+import { RulesBoolean } from "./RulesBoolean.js";
+import { RulesInteger } from "./RulesInteger.js";
+import { RulesValue } from "./RulesValue.js";
 /**
  * List type. Items are not necessarily homogenous.
  *
  * {@link https://firebase.google.com/docs/reference/rules/rules.List}
  */
-class RulesList extends RulesValue_js_1.RulesValue {
+export class RulesList extends RulesValue {
     constructor(arrayOrExpression) {
         if (Array.isArray(arrayOrExpression)) {
-            super(new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `[`, arrayOrExpression, RulesExpression_js_1.RulesExpression.l `]`));
+            super(new RulesExpression(RulesExpression.l `[`, arrayOrExpression, RulesExpression.l `]`));
         }
         else if (arrayOrExpression) {
             super(arrayOrExpression);
@@ -23,15 +20,15 @@ class RulesList extends RulesValue_js_1.RulesValue {
         }
     }
     get(index, valueType) {
-        const type = new (valueType || RulesValue_js_1.RulesValue);
-        type.__rulesExpression = new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `(`, this, RulesExpression_js_1.RulesExpression.l `)`, RulesExpression_js_1.RulesExpression.l `[`, index, RulesExpression_js_1.RulesExpression.l `]`);
+        const type = new (valueType || RulesValue);
+        type.__rulesExpression = new RulesExpression(RulesExpression.l `(`, this, RulesExpression.l `)`, RulesExpression.l `[`, index, RulesExpression.l `]`);
         return type;
     }
     /**
      * Get the number of values in the list.
      */
     size() {
-        return new RulesInteger_js_1.RulesInteger(new RulesExpression_js_1.RulesExpression(this, RulesExpression_js_1.RulesExpression.l `.size()`));
+        return new RulesInteger(new RulesExpression(this, RulesExpression.l `.size()`));
     }
     /**
      * Determine whether the list contains all elements in another list.
@@ -52,23 +49,22 @@ class RulesList extends RulesValue_js_1.RulesValue {
         return this.buildHasExpression("hasOnly", list);
     }
     buildHasExpression(method, list) {
-        const expression = [this, RulesExpression_js_1.RulesExpression.l `.${method}(`];
+        const expression = [this, RulesExpression.l `.${method}(`];
         if (list instanceof Array) {
-            expression.push(RulesExpression_js_1.RulesExpression.l `[`);
+            expression.push(RulesExpression.l `[`);
             for (let i = 0; i < list.length; i++) {
                 if (i > 0) {
-                    expression.push(RulesExpression_js_1.RulesExpression.l `, `);
+                    expression.push(RulesExpression.l `, `);
                 }
                 expression.push(list[i]);
             }
-            expression.push(RulesExpression_js_1.RulesExpression.l `]`);
+            expression.push(RulesExpression.l `]`);
         }
         else {
             expression.push(list);
         }
-        expression.push(RulesExpression_js_1.RulesExpression.l `)`);
-        return new RulesBoolean_js_1.RulesBoolean(new RulesExpression_js_1.RulesExpression(expression));
+        expression.push(RulesExpression.l `)`);
+        return new RulesBoolean(new RulesExpression(expression));
     }
 }
-exports.RulesList = RulesList;
 //# sourceMappingURL=RulesList.js.map

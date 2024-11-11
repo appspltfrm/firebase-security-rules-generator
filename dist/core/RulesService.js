@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RulesService = void 0;
-const StringWriter_js_1 = require("../utils/StringWriter.js");
-const RulesExpression_js_1 = require("./RulesExpression.js");
-class RulesService {
+import { StringWriter } from "../utils/StringWriter.js";
+import { RulesExpression } from "./RulesExpression.js";
+export class RulesService {
     name;
     version;
     blocksAndDeclarations;
@@ -83,11 +80,11 @@ class RulesService {
         writer.writeLine();
     }
     toExpression(value) {
-        if (value instanceof RulesExpression_js_1.RulesExpression) {
+        if (value instanceof RulesExpression) {
             return value;
         }
         else {
-            return new RulesExpression_js_1.RulesExpression(value);
+            return new RulesExpression(value);
         }
     }
     writeServiceStart(writer) {
@@ -95,7 +92,7 @@ class RulesService {
     writeServiceEnd(writer) {
     }
     toString() {
-        const writer = new StringWriter_js_1.StringWriter();
+        const writer = new StringWriter();
         writer.write("rules_version = '2';").line();
         writer.write(`service ${this.name} {`);
         this.writeServiceStart(writer);
@@ -106,7 +103,7 @@ class RulesService {
                 this.writeMatch(writer, blockOrDeclaration);
                 writer.indentDown();
             }
-            else if (blockOrDeclaration instanceof RulesExpression_js_1.RulesExpression) {
+            else if (blockOrDeclaration instanceof RulesExpression) {
                 writer.indentUp();
                 writer.line();
                 blockOrDeclaration.write(writer);
@@ -118,5 +115,4 @@ class RulesService {
         return writer.toString();
     }
 }
-exports.RulesService = RulesService;
 //# sourceMappingURL=RulesService.js.map

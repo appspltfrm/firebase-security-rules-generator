@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.StringWriter = void 0;
-class StringWriter {
+export class StringWriter {
     indentChars;
     constructor(indentChars = "    ") {
         this.indentChars = indentChars;
@@ -53,5 +50,4 @@ class StringWriter {
         return this.content;
     }
 }
-exports.StringWriter = StringWriter;
 //# sourceMappingURL=StringWriter.js.map

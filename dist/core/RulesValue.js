@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RulesValue = void 0;
-const RulesExpression_js_1 = require("./RulesExpression.js");
-class RulesValue {
+import { RulesExpression } from "./RulesExpression.js";
+export class RulesValue {
     constructor(expression) {
         this.__rulesValue = true;
         if (expression) {
@@ -15,19 +12,19 @@ class RulesValue {
     __rulesAccessorContext;
     __rulesValueAsExpression() {
         if (this.__rulesVarId) {
-            return new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `${this.__rulesVarId}`);
+            return new RulesExpression(RulesExpression.l `${this.__rulesVarId}`);
         }
         else if (this.__rulesExpression) {
             return this.__rulesExpression;
         }
         else if (typeof this.__rulesAccessorContext === "string") {
-            return RulesExpression_js_1.RulesExpression.l `${this.__rulesAccessorContext}${accessorExpression(this.__rulesAccessorName)}`;
+            return RulesExpression.l `${this.__rulesAccessorContext}${accessorExpression(this.__rulesAccessorName)}`;
         }
         else if (this.__rulesAccessorContext) {
-            return new RulesExpression_js_1.RulesExpression(this.__rulesAccessorContext, RulesExpression_js_1.RulesExpression.l `${accessorExpression(this.__rulesAccessorName)}`);
+            return new RulesExpression(this.__rulesAccessorContext, RulesExpression.l `${accessorExpression(this.__rulesAccessorName)}`);
         }
         else {
-            return new RulesExpression_js_1.RulesExpression(RulesExpression_js_1.RulesExpression.l `${this.__rulesAccessorName}`);
+            return new RulesExpression(RulesExpression.l `${this.__rulesAccessorName}`);
         }
     }
     __rulesInitProperties() {
@@ -46,7 +43,6 @@ class RulesValue {
         return niu;
     }
 }
-exports.RulesValue = RulesValue;
 function accessorExpression(name) {
     if (name.match(/^(?![0-9])[a-zA-Z0-9$_]+$/)) {
         return `.${name}`;

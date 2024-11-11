@@ -1,0 +1,10 @@
+import { RulesExpression } from "../core/RulesExpression.js";
+import { RulesValue } from "./RulesValue.js";
+type Value = RulesValue | string | boolean;
+type TrueExpression = RulesValue | RulesExpression;
+export declare function ifElse<T = RulesValue>(trueExpression: TrueExpression, whenTrueValue: T): T;
+export declare function ifElse<T = RulesValue>(trueExpression: TrueExpression, whenTrueValue: T, elseValue: T): T;
+export declare function ifElse(trueExpression: TrueExpression, whenTrueValue: string | boolean): RulesValue;
+export declare function ifElse(trueExpression: TrueExpression, whenTrueValue: Value): RulesValue;
+export declare function ifElse(trueExpression: TrueExpression, whenTrueValue: Value, elseValue: Value): RulesValue;
+export {};

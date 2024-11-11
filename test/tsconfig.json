@@ -1,0 +1,21 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "outDir": "dist-test",
+        "paths": {
+            "firebase-security-rules-generator": ["src"],
+            "firebase-security-rules-generator/*": ["src/*"]
+        },
+        "sourceMap": true,
+        "importHelpers": true,
+        "plugins": [
+            {"transform": "typescript-transform-paths"}
+        ]
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}

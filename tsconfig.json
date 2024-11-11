@@ -13,7 +13,7 @@
         "rootDir": "./",
         "baseUrl": "./",
         "sourceMap": true,
-        "importHelpers": true
+        "importHelpers": false
     },
 
     "exclude": [

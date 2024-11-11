@@ -11,8 +11,7 @@
     "test": "npm run build:test && node dist-test/test/firestore/test.js"
   },
   "dependencies": {
-    "@appspltfrm/node-utils": "github:appspltfrm/node-utils",
-    "tslib": "^2.8.1"
+    "@appspltfrm/node-utils": "github:appspltfrm/node-utils"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

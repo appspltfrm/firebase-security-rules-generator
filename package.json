@@ -1,5 +1,5 @@
 {
-  "name": "firebase-security-rules-generator",
+  "name": "@appspltfrm/firebase-security-rules-generator",
   "version": "1.0.0",
   "private": false,
   "type": "module",

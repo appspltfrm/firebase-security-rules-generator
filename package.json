@@ -21,5 +21,11 @@
     "typescript": "^5.6.3",
     "typescript-transform-paths": "^3.5.2"
   },
+  "exports": {
+    "./firestore": {
+      "types": "./firestore/index.d.ts",
+      "default": "./firestore/index.js"
+    }
+  },
   "sideEffects": false
 }

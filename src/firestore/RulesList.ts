@@ -21,7 +21,7 @@ export class RulesList<T extends RulesValue = RulesValue> extends RulesValue imp
 
     constructor(arrayOrExpression?: Array<string | number> | RulesExpression) {
         if (Array.isArray(arrayOrExpression)) {
-            super(new RulesExpression(RulesExpression.l`[`,arrayOrExpression, RulesExpression.l`]`));
+            super(new RulesExpression(RulesExpression.l`[`, arrayOrExpression.map((v, i) => i > 0 ? [RulesExpression.l`, `, v] : [v]).flat(), RulesExpression.l`]`));
         } else if (arrayOrExpression) {
             super(arrayOrExpression);
         } else {
@@ -40,6 +40,10 @@ export class RulesList<T extends RulesValue = RulesValue> extends RulesValue imp
      */
     size() {
         return new RulesInteger(new RulesExpression(this, RulesExpression.l`.size()`));
+    }
+
+    includes(value: RulesValue): RulesExpression {
+        return new RulesExpression(value, RulesExpression.l` in `, this);
     }
 
     /**

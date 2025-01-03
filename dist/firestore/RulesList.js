@@ -10,7 +10,7 @@ import { RulesValue } from "./RulesValue.js";
 export class RulesList extends RulesValue {
     constructor(arrayOrExpression) {
         if (Array.isArray(arrayOrExpression)) {
-            super(new RulesExpression(RulesExpression.l `[`, arrayOrExpression, RulesExpression.l `]`));
+            super(new RulesExpression(RulesExpression.l `[`, arrayOrExpression.map((v, i) => i > 0 ? [RulesExpression.l `, `, v] : [v]).flat(), RulesExpression.l `]`));
         }
         else if (arrayOrExpression) {
             super(arrayOrExpression);
@@ -29,6 +29,9 @@ export class RulesList extends RulesValue {
      */
     size() {
         return new RulesInteger(new RulesExpression(this, RulesExpression.l `.size()`));
+    }
+    includes(value) {
+        return new RulesExpression(value, RulesExpression.l ` in `, this);
     }
     /**
      * Determine whether the list contains all elements in another list.

@@ -18,6 +18,7 @@ export declare class RulesList<T extends RulesValue = RulesValue> extends RulesV
      * Get the number of values in the list.
      */
     size(): RulesInteger;
+    includes(value: RulesValue): RulesExpression;
     /**
      * Determine whether the list contains all elements in another list.
      */

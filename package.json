@@ -1,11 +1,9 @@
 {
   "name": "@appspltfrm/firebase-security-rules-generator",
   "version": "1.0.0",
-  "private": false,
   "type": "module",
   "scripts": {
     "prepare": "ts-patch install -s",
-    "install": "node-utils-npm-install-dist",
     "build": "node-utils-file-system-glob-delete \"dist/**/*\" && tsc -p tsconfig.build.json",
     "build:test": "node-utils-file-system-glob-delete \"dist/**/*\" && tsc -p test/tsconfig.json --outDir dist-test",
     "test": "npm run build:test && node dist-test/test/firestore/test.js"
@@ -23,9 +21,10 @@
   },
   "exports": {
     "./firestore": {
-      "types": "./firestore/index.d.ts",
-      "default": "./firestore/index.js"
+      "types": "./dist/firestore/index.d.ts",
+      "default": "./dist/firestore/index.js"
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "packageManager": "yarn@4.9.2"
 }

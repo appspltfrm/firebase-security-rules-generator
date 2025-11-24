@@ -18,6 +18,10 @@ export function path(path) {
         return path(stringPath);
     }
     RulesPath.value = value;
+    function documentPath(docPath) {
+        return path("/databases/$(database)/documents" + docPath);
+    }
+    RulesPath.documentPath = documentPath;
     function l(strings, ...expr) {
         return new RulesPath(new class extends RulesExpression {
             write(writer) {

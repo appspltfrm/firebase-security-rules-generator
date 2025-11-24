@@ -27,6 +27,10 @@ export namespace RulesPath {
         return path(stringPath);
     }
 
+    export function documentPath(docPath: string | RulesString) {
+        return path("/databases/$(database)/documents" + docPath);
+    }
+
     export function l(strings: TemplateStringsArray, ...expr: any[]): RulesPath {
         return new RulesPath(new class extends RulesExpression {
             write(writer) {

@@ -1,4 +1,5 @@
 import { RulesExpression } from "../core/RulesExpression.js";
+import { RulesString } from "./RulesString.js";
 import { RulesValue } from "./RulesValue.js";
 /**
  * Directory-like pattern for the location of a resource.
@@ -19,7 +20,7 @@ export function path(path) {
     }
     RulesPath.value = value;
     function documentPath(docPath) {
-        return path("/databases/$(database)/documents/" + docPath);
+        return path(RulesString.l `/databases/$(database)/documents/${docPath}`);
     }
     RulesPath.documentPath = documentPath;
     function l(strings, ...expr) {

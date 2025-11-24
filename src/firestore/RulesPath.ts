@@ -1,6 +1,7 @@
 import {RulesExpression} from "../core/RulesExpression.js";
 import {InternalRulesValue} from "../internal/InternalRulesValue.js";
 import {RulesMap} from "./RulesMap.js";
+import {RulesString} from "./RulesString.js";
 import {RulesValue} from "./RulesValue.js";
 
 /**
@@ -16,13 +17,13 @@ export class RulesPath extends RulesValue {
 
 }
 
-export function path(path: string) {
+export function path(path: string | RulesString) {
     return new RulesPath(new RulesExpression(RulesExpression.l`path(`, path, RulesExpression.l`)`));
 }
 
 export namespace RulesPath {
 
-    export function value(stringPath: string) {
+    export function value(stringPath: string | RulesString) {
         return path(stringPath);
     }
 

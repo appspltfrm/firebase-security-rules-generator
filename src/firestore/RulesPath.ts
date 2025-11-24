@@ -28,7 +28,7 @@ export namespace RulesPath {
     }
 
     export function documentPath(docPath: string | RulesString) {
-        return path(RulesString.l`${RulesExpression.l`string(path(/databases/$(database)/documents))`}/${docPath}`);
+        return path(RulesString.l`${RulesExpression.l`string(/databases/$(database)/documents)`}/${docPath}`);
     }
 
     export function l(strings: TemplateStringsArray, ...expr: any[]): RulesPath {

@@ -20,7 +20,7 @@ export function path(path) {
     }
     RulesPath.value = value;
     function documentPath(docPath) {
-        return path(RulesString.l `/databases/$(database)/documents/${docPath}`);
+        return path(RulesString.l `/databases/${RulesExpression.l `$(database)`}/documents/${docPath}`);
     }
     RulesPath.documentPath = documentPath;
     function l(strings, ...expr) {

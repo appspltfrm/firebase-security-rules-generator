@@ -1,6 +1,10 @@
 import {InternalRulesValue} from "../internal/InternalRulesValue.js";
 import {RulesExpression} from "./RulesExpression.js";
 
+/**
+ * Bazowa klasa dla wszystkich wartości w regułach bezpieczeństwa Firebase.
+ * Zarządza dostępem do właściwości, generowaniem wyrażeń i klonowaniem obiektów.
+ */
 export class RulesValue {
 
     constructor(expression?: RulesExpression) {
@@ -11,11 +15,29 @@ export class RulesValue {
         }
     }
 
+    /**
+     * Bezpośrednie wyrażenie reprezentujące tę wartość.
+     */
     private __rulesExpression?: RulesExpression;
+
+    /**
+     * Identyfikator zmiennej, jeśli wartość jest przypisana do zmiennej wewnątrz funkcji.
+     */
     private __rulesVarId?: string;
+
+    /**
+     * Nazwa właściwości/akcesora (np. "data", "uid").
+     */
     private __rulesAccessorName?: string;
+
+    /**
+     * Kontekst akcesora (np. "request", "resource", lub inna instancja RulesValue).
+     */
     private __rulesAccessorContext?: string | RulesValue;
 
+    /**
+     * Konwertuje wartość na wyrażenie reguł (RulesExpression).
+     */
     private __rulesValueAsExpression() {
 
         if (this.__rulesVarId) {
@@ -33,6 +55,9 @@ export class RulesValue {
         }
     }
 
+    /**
+     * Inicjalizuje właściwości obiektu jako instancje RulesValue, ustawiając ich kontekst.
+     */
     private __rulesInitProperties() {
 
         for (const propertyName in this) {
@@ -48,6 +73,9 @@ export class RulesValue {
 
     }
 
+    /**
+     * Tworzy kopię obiektu z zachowaniem struktury właściwości.
+     */
     private __rulesClone() {
         const niu = new (this["constructor"] as any as {new(): RulesValue});
         niu.__rulesInitProperties();

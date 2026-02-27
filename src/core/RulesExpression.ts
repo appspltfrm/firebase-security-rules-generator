@@ -1,14 +1,24 @@
 import {InternalRulesValue} from "../internal/InternalRulesValue.js";
 import {StringWriter} from "../utils/StringWriter.js";
 
+/**
+ * Reprezentuje wyrażenie w regułach bezpieczeństwa Firebase.
+ * Może zawierać ciągi znaków, liczby, inne wyrażenia lub instancje RulesValue.
+ */
 export class RulesExpression {
 
     constructor(...expression: any[]) {
         this.expression = expression;
     }
 
+    /**
+     * Elementy składające się na wyrażenie.
+     */
     protected expression: any[];
 
+    /**
+     * Implementacja zapisu poszczególnych elementów wyrażenia do StringWriter.
+     */
     protected writeImpl(writer: StringWriter, expression: any) {
 
         if (expression === null || expression === undefined) {
@@ -34,10 +44,16 @@ export class RulesExpression {
         }
     }
 
+    /**
+     * Zapisuje całe wyrażenie do StringWriter.
+     */
     write(writer: StringWriter) {
         this.writeImpl(writer, this.expression);
     }
 
+    /**
+     * Tworzy tekstową reprezentację wyrażenia dla celów debugowania.
+     */
     toString() {
         const writer = new StringWriter();
         this.write(writer);
@@ -48,6 +64,9 @@ export class RulesExpression {
 
 export namespace RulesExpression {
 
+    /**
+     * Tworzy wyrażenie literalne na podstawie szablonu tekstowego (template literal).
+     */
     export function l(strings: TemplateStringsArray, ...expr: string[]): RulesExpression {
         return new class extends RulesExpression {
             write(writer) {
@@ -58,6 +77,9 @@ export namespace RulesExpression {
         }
     }
 
+    /**
+     * Tworzy wyrażenie reprezentujące nową linię.
+     */
     export function newLine(): RulesExpression {
         return new class extends RulesExpression {
             write(writer: StringWriter) {
@@ -66,6 +88,9 @@ export namespace RulesExpression {
         }
     }
 
+    /**
+     * Tworzy wyrażenie zwiększające wcięcie.
+     */
     export function identUp(): RulesExpression {
         return new class extends RulesExpression {
             write(writer: StringWriter) {
@@ -74,6 +99,9 @@ export namespace RulesExpression {
         }
     }
 
+    /**
+     * Tworzy wyrażenie zmniejszające wcięcie.
+     */
     export function identDown(): RulesExpression {
         return new class extends RulesExpression {
             write(writer: StringWriter) {

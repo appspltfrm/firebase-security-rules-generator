@@ -3,6 +3,12 @@ import {InternalRulesPathVar} from "../internal/InternalRulesPathVar.js";
 import {InternalRulesValue} from "../internal/InternalRulesValue.js";
 import {RulesValue} from "./RulesValue.js";
 
+/**
+ * Dekorator definiujący blok `match` w regułach Firebase.
+ * Klasa udekorowana tym dekoratorem reprezentuje ścieżkę (path) w regułach.
+ * 
+ * @param path Ścieżka reguł, np. "users/{userId}"
+ */
 export function match<C extends {new(...args:any[]): {}}>(path: string) {
 
     return function(classConstructor: C): any {

@@ -1,9 +1,19 @@
 import { StringWriter } from "../utils/StringWriter.js";
+/**
+ * Reprezentuje wyrażenie w regułach bezpieczeństwa Firebase.
+ * Może zawierać ciągi znaków, liczby, inne wyrażenia lub instancje RulesValue.
+ */
 export class RulesExpression {
     constructor(...expression) {
         this.expression = expression;
     }
+    /**
+     * Elementy składające się na wyrażenie.
+     */
     expression;
+    /**
+     * Implementacja zapisu poszczególnych elementów wyrażenia do StringWriter.
+     */
     writeImpl(writer, expression) {
         if (expression === null || expression === undefined) {
             return writer.write("null");
@@ -26,9 +36,15 @@ export class RulesExpression {
             return writer.write(expression.toString());
         }
     }
+    /**
+     * Zapisuje całe wyrażenie do StringWriter.
+     */
     write(writer) {
         this.writeImpl(writer, this.expression);
     }
+    /**
+     * Tworzy tekstową reprezentację wyrażenia dla celów debugowania.
+     */
     toString() {
         const writer = new StringWriter();
         this.write(writer);
@@ -36,6 +52,9 @@ export class RulesExpression {
     }
 }
 (function (RulesExpression) {
+    /**
+     * Tworzy wyrażenie literalne na podstawie szablonu tekstowego (template literal).
+     */
     function l(strings, ...expr) {
         return new class extends RulesExpression {
             write(writer) {
@@ -46,6 +65,9 @@ export class RulesExpression {
         };
     }
     RulesExpression.l = l;
+    /**
+     * Tworzy wyrażenie reprezentujące nową linię.
+     */
     function newLine() {
         return new class extends RulesExpression {
             write(writer) {
@@ -54,6 +76,9 @@ export class RulesExpression {
         };
     }
     RulesExpression.newLine = newLine;
+    /**
+     * Tworzy wyrażenie zwiększające wcięcie.
+     */
     function identUp() {
         return new class extends RulesExpression {
             write(writer) {
@@ -62,6 +87,9 @@ export class RulesExpression {
         };
     }
     RulesExpression.identUp = identUp;
+    /**
+     * Tworzy wyrażenie zmniejszające wcięcie.
+     */
     function identDown() {
         return new class extends RulesExpression {
             write(writer) {

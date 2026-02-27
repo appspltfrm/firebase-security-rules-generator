@@ -1,4 +1,10 @@
 import { RulesValue } from "./RulesValue.js";
+/**
+ * Dekorator definiujący blok `match` w regułach Firebase.
+ * Klasa udekorowana tym dekoratorem reprezentuje ścieżkę (path) w regułach.
+ *
+ * @param path Ścieżka reguł, np. "users/{userId}"
+ */
 export function match(path) {
     return function (classConstructor) {
         const internalConstructor = classConstructor;
